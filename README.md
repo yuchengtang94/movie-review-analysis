@@ -2,12 +2,15 @@
 
 #### Goal:
 
-Naive Bayes
+Traditional ML:
+  Naive Bayes
+  Logistic Regression
+  SVM
+  
+DL:
+  LSTM
+  CNN
 
-LSTM
-
-CNN
-
-Feature Engineering and Preprocessing: tf-idf, word2vec, tokenization, bag of words
+Features and Preprocessing: tf-idf, word2vec, tokenization, bag of words
 
 Web App
