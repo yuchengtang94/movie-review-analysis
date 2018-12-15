@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form, render_field %}
+
+{% block content %}
+    <h1>render_form</h1>
+    {{ render_form(form,action="search") }}
+{% endblock %}
