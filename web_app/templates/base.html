@@ -18,17 +18,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {{ render_nav_item('index', 'Home', use_li=True) }}
-                {{ render_nav_item('test_form', 'Form', use_li=True) }}
-                {{ render_nav_item('test_nav', 'Nav', use_li=True) }}
-                {{ render_nav_item('test_pagination', 'Pagination', use_li=True) }}
-                {{ render_nav_item('test_utils', 'Utils', use_li=True) }}
             </ul>
         </div>
     </nav>
     {% block content %}{% endblock %}
     <footer class="text-center">
         {% block footer %}
-            <small> &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a>
+            <small> &copy; 2018 LING131&nbsp;&nbsp;&nbsp;Yucheng Tang&nbsp;&nbsp;&nbsp;Yuan Zhou&nbsp;&nbsp;&nbsp;Chuanxiong Yi&nbsp;&nbsp;&nbsp;Jinli Yu
             </small>
         {% endblock %}
     </footer>

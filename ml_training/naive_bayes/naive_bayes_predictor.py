@@ -2,9 +2,9 @@ from joblib import dump, load
 
 class NBPredictor:
 
-    def __init__(self):
-        nb_path = 'model/nb_cv.joblib'
-        cv_path = 'model/cv.joblib'
+    def __init__(self,path_prefix=''):
+        nb_path = path_prefix+'model/nb_cv.joblib'
+        cv_path = path_prefix+'model/cv.joblib'
         self.classifier = load(nb_path)
         self.transformer = load(cv_path)
 
