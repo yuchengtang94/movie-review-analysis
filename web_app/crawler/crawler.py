@@ -36,6 +36,10 @@ def get_reviews(html):
         }for review_tag in reviews_tag]
     return reviews
 
+def crawl_reviews_by_movie(movie_name):
+    html = get_review_html(movie_name)
+    return get_reviews(html) if len(html) != 0 else None
+
 if __name__ == "__main__":
     movie_name = sys.argv[1]
     html = get_review_html(movie_name)
