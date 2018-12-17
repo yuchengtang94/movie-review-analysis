@@ -7,6 +7,7 @@ from urllib.parse import quote
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import sys
+import pdb
 
 def get_review_html(movie_name):
     try:
@@ -16,7 +17,9 @@ def get_review_html(movie_name):
         driver = webdriver.Chrome(chrome_options=option)
         driver.get(search_url)
         driver.find_element_by_xpath("//section[@id='movieSection']//a[1]").click() #first movie in the list
-        driver.find_element_by_xpath("//section[@id='audience_reviews']//div[@class='view-all']/a").click()#audiance reviews
+        review_html = driver.find_element_by_xpath("//section[@id='audience_reviews']//div[@class='view-all']/a").get_attribute("href")#audiance reviews
+        # pdb.set_trace()
+        driver.get(review_html)
         html = driver.page_source
     except Exception as e:
         print("Cannot find this movie or there is no audience reviews for this movie now!")
