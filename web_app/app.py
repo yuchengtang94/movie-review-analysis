@@ -6,7 +6,6 @@ from wtforms import StringField, SubmitField, BooleanField, PasswordField
 from wtforms.validators import DataRequired, Length
 
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
 import pdb
 from crawler import crawler
 import sys
@@ -41,16 +40,16 @@ def index():
 
 @app.route("/search",methods=['GET', "POST"])
 def search():
-    print("in search controler")
+    # print("in search controler")
     form = SearchForm(request.form)
     # if request.method == 'POST' and form.validate():
-    print("go to rotten tomatoes")
+    # print("go to rotten tomatoes")
     reviews = crawler.crawl_reviews_by_movie(form.moviename.data)
     if(reviews == None):
-        print("failed to get reviews")
+        # print("failed to get reviews")
         return render_template('reviews.html',reviews=reviews,movie_name=form.moviename.data)
-    print("success to get reviews")
-    nb_predictor = NBPredictor(path_prefix='../ml_training/naive_bayes/')
+    # print("success to get reviews")
+    nb_predictor = NBPredictor(path_prefix='../ml_training/naive_bayes/') #switch predictor here
     for review in reviews:
         review['predict'] = map_label(nb_predictor.predict_single_sentence(review['comment']))
         review['score'] = str(int(review['score'])/10) if review['score'].isdigit() else "N/A"
