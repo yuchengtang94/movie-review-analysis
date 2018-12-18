@@ -7,11 +7,11 @@ from wtforms.validators import DataRequired, Length
 
 from flask_bootstrap import Bootstrap
 import pdb
-from crawler import crawler
+from web_app.crawler import crawler
 import sys
 path = sys.path
 sys.path.append("..")
-from ml_training.naive_bayes.naive_bayes_predictor import NBPredictor
+from ml_training.traditional_ml.naive_bayes_predictor import NBPredictor
 sys.path = path
 
 app = Flask(__name__)
@@ -49,7 +49,7 @@ def search():
         # print("failed to get reviews")
         return render_template('reviews.html',reviews=reviews,movie_name=form.moviename.data)
     # print("success to get reviews")
-    nb_predictor = NBPredictor(path_prefix='../ml_training/naive_bayes/') #switch predictor here
+    nb_predictor = NBPredictor(path_prefix='../ml_training/traditional_ml/') #switch predictor here
     for review in reviews:
         review['predict'] = map_label(nb_predictor.predict_single_sentence(review['comment']))
         review['score'] = str(int(review['score'])/10) if review['score'].isdigit() else "N/A"
