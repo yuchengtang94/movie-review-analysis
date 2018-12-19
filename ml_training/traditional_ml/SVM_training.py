@@ -16,7 +16,7 @@ from sklearn.svm import SVC
 # In[2]:
 
 
-debug_mode = 1
+test_mode = 1
 
 train = pd.read_csv('../input/train.tsv', sep='\t')
 test = pd.read_csv('../input/test.tsv',  sep='\t')
@@ -26,7 +26,7 @@ sampleSub = pd.read_csv('../input/sampleSubmission.csv')
 # In[3]:
 
 
-if debug_mode:
+if test_mode:
     train_data = train.Phrase[:10000]
     sentiment = train.Sentiment[:10000]
 else:

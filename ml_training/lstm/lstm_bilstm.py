@@ -30,6 +30,11 @@ train=pd.read_csv('../input/train.tsv',sep='\t')
 test=pd.read_csv('../input/test.tsv',sep='\t')
 sub=pd.read_csv('../input/sampleSubmission.csv')
 
+test_mode = 1
+
+if test_mode:
+    train = train[:1000]
+
 test['Sentiment']=-999
 df=pd.concat([train,test],ignore_index=True)
 del train,test
@@ -102,8 +107,10 @@ history1=model1.fit(X_train, y_train, validation_data=(X_val, y_val),epochs=epoc
 y_pred1=model1.predict_classes(X_test,verbose=1)
 
 sub.Sentiment=y_pred1
-sub.to_csv('sub1.csv',index=False)
-model1.save('LSTM.h5')
+# sub.to_csv('sub1.csv',index=False)
+
+if test_mode == 0:
+    model1.save('LSTM.h5')
 
 model2 = Sequential()
 
@@ -118,8 +125,10 @@ model2.summary()
 history2=model2.fit(X_train, y_train, validation_data=(X_val, y_val),epochs=epochs, batch_size=batch_size, verbose=1)
 y_pred2=model2.predict_classes(X_test, verbose=1)
 sub.Sentiment=y_pred2
-sub.to_csv('sub2.csv',index=False)
-model2.save("BiLSTM.h5")
+# sub.to_csv('sub2.csv',index=False)
+
+if test_mode == 0:
+    model2.save("BiLSTM.h5")
 
 
 

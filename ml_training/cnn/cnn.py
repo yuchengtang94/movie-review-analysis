@@ -15,6 +15,10 @@ import pandas as pd
 train = pd.read_csv('../input/train.tsv',  sep="\t")
 test = pd.read_csv('../input/test.tsv',  sep="\t")
 
+test_mode = 1
+
+if test_mode:
+    train = train[:1000]
 
 # In[ ]:
 
@@ -139,5 +143,5 @@ model.fit(X_train, Y_train, validation_data=(X_val, Y_val), epochs=epochs, batch
 sub = pd.read_csv('../input/sampleSubmission.csv')
 
 sub['Sentiment'] = model.predict_classes(test_X, batch_size=batch_size, verbose=1)
-sub.to_csv('sub_cnn.csv', index=False)
+# sub.to_csv('sub_cnn.csv', index=False)
 
