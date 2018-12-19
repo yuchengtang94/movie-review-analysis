@@ -1,0 +1,6 @@
+flask
+flask_wtf
+bootstrap_flask
+selenium
+chromedriver
+BeautifulSoup4
