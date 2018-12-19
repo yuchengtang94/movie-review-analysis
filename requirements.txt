@@ -4,3 +4,4 @@ bootstrap_flask
 selenium
 chromedriver
 BeautifulSoup4
+keras

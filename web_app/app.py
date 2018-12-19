@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, PasswordField
+from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 from flask_bootstrap import Bootstrap
-import pdb
 from crawler import crawler
 import sys
 path = sys.path
 sys.path.append("..")
-from ml_training.traditional_ml.naive_bayes_predictor import NBPredictor
+from model_utils.predictor import predict
 sys.path = path
 
 app = Flask(__name__)
@@ -49,9 +48,13 @@ def search():
         # print("failed to get reviews")
         return render_template('reviews.html',reviews=reviews,movie_name=form.moviename.data)
     # print("success to get reviews")
-    nb_predictor = NBPredictor(path_prefix='../ml_training/traditional_ml/') #switch predictor here
+    # nb_predictor = NBPredictor(path_prefix='../ml_training/traditional_ml/') #switch predictor here
+    sentences = []
     for review in reviews:
-        review['predict'] = map_label(nb_predictor.predict_single_sentence(review['comment']))
+        sentences.append(review['comment'])
+    results = predict(sentences)
+    for review, result in zip(reviews, results):
+        review['predict'] = map_label(result)
         review['score'] = str(int(review['score'])/10) if review['score'].isdigit() else "N/A"
     return render_template('reviews.html',reviews=reviews,movie_name=form.moviename.data)
     # else:
