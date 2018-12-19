@@ -86,7 +86,8 @@ X_test = tokenizer.texts_to_sequences(test_text)
 X_train = sequence.pad_sequences(X_train, maxlen=max_words)
 X_val = sequence.pad_sequences(X_val, maxlen=max_words)
 X_test = sequence.pad_sequences(X_test, maxlen=max_words)
-print(X_train.shape,X_val.shape,X_test.shape)
+
+# print()
 
 model1=Sequential()
 model1.add(Embedding(max_features,100,mask_zero=True))
@@ -102,19 +103,60 @@ y_pred1=model1.predict_classes(X_test,verbose=1)
 
 sub.Sentiment=y_pred1
 sub.to_csv('sub1.csv',index=False)
-#model1.save('LSTM.h5')
+model1.save('LSTM.h5')
 
 model2 = Sequential()
 
 model2.add(Embedding(max_features, 100, input_length=max_words))
 model2.add(SpatialDropout1D(0.25))
-model2.add(Bidirectional(GRU(128)))
+model2.add(Bidirectional(LSTM(128)))
 model2.add(Dropout(0.5))
 
 model2.add(Dense(5, activation='softmax'))
 model2.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model2.summary()
-history2=model2fit(X_train, y_train, validation_data=(X_val, y_val),epochs=epochs, batch_size=batch_size, verbose=1)
+history2=model2.fit(X_train, y_train, validation_data=(X_val, y_val),epochs=epochs, batch_size=batch_size, verbose=1)
 y_pred2=model2.predict_classes(X_test, verbose=1)
 sub.Sentiment=y_pred2
 sub.to_csv('sub2.csv',index=False)
+model2.save("BiLSTM.h5")
+
+
+
+## e.g
+# test=pd.read_csv('../input/test.tsv',sep='\t')
+# sub=pd.read_csv('../input/sampleSubmission.csv')
+# new_test = pre_process_test_set(test,sub)
+# y_pred1=model1.predict_classes(new_test,verbose=1)
+
+def pre_process_test_set(test,sub):
+    test['Sentiment']=-999
+    df=test
+    df['clean_review']=clean_review(df.Phrase.values)
+    #split
+    df_test=df
+    df_test.drop('Sentiment',axis=1,inplace=True)
+    gc.collect()
+    test_text=df_test.clean_review.values
+
+    all_words=' '.join(X_train_text)
+    all_words=word_tokenize(all_words)
+    dist=FreqDist(all_words)
+    num_unique_word=len(dist)
+    r_len=[]
+    for text in X_train_text:
+        word=word_tokenize(text)
+        l=len(word)
+        r_len.append(l)
+        
+    MAX_REVIEW_LEN=np.max(r_len)
+    
+    max_features = num_unique_word
+    max_words = MAX_REVIEW_LEN
+    
+    tokenizer = Tokenizer(num_words=max_features)
+    tokenizer.fit_on_texts(list(X_train_text))
+    X_test = tokenizer.texts_to_sequences(test_text)
+    X_test = sequence.pad_sequences(X_test, maxlen=max_words)
+    return X_test
+    
