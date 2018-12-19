@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, Length
 
 from flask_bootstrap import Bootstrap
 import pdb
-from web_app.crawler import crawler
+from crawler import crawler
 import sys
 path = sys.path
 sys.path.append("..")
