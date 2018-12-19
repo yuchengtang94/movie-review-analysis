@@ -17,6 +17,7 @@ ml_training (train ml & dl classifier)
 model_utils
     cnn_predictor.py (cnn)
     ml_predictor.py (ml)
+    lstm_predictor.py (lstm)
     predictor.py (predictor)
 web_app
     --crawler (crawler folder)
