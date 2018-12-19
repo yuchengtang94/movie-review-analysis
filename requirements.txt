@@ -1,3 +1,4 @@
+scikit-learn
 flask==1.0.2
 flask-wtf==0.14.2
 bootstrap-flask==1.0.9
