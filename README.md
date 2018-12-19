@@ -50,6 +50,11 @@ Author: Chuangxiong Yi
 #### LSTM
 Author: Yuan Zhou
 
+Run with the following for training LSTM and Bidirectional LSTM:
+```
+python LSTM and Bidirectional LSTM.py
+```
+
 
 
 
