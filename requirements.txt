@@ -9,6 +9,6 @@ keras==2.2.4
 keras-applications==1.0.6
 keras-preprocessing==1.0.5
 tensorboard==1.8.0
-tensorflow==1.8.0
+tensorflow==1.7.0
 pandas==0.23.0
 pandas-summary==0.0.5
