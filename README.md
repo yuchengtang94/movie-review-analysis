@@ -1,5 +1,11 @@
 ## Movie Review Sentiment Analysis (Kernels Only)
 
+#### Build Dependency
+
+```
+build build_env.sh
+```
+
 #### Folder Structure:
 
 ```
@@ -11,9 +17,9 @@ ml_training (train ml & dl classifier)
 	--lstm
 	    lstm_bilstm.py(train LSTM classifier)
 	--traditional_ml
-		models(save traditional ml models)
-		naive_bayes_logistic_regression_training.py(train naive bayes and logistic regression)
-		SVM_training.py(train naive bayes and logistic regression)
+		    models(save traditional ml models)
+		    naive_bayes_logistic_regression_training.py(train naive bayes and logistic regression)
+		    SVM_training.py(train naive bayes and logistic regression)
 model_utils
     cnn_predictor.py (cnn)
     ml_predictor.py (ml)

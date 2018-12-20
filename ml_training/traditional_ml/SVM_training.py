@@ -77,7 +77,7 @@ print('Accuracy of test: ', metrics.accuracy_score( y_pred , y_test))
 
 
 from joblib import dump, load
-if not debug_mode:
+if not test_mode:
     nb_path = 'model/svm_cv.joblib'
     dump(SVM_classifier, nb_path)
 

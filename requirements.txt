@@ -6,4 +6,4 @@ selenium==3.141.0
 BeautifulSoup4
 joblib
 keras
-tensorflow==1.12.0
+tensorflow==1.8.0
