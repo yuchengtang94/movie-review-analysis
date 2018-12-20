@@ -24,7 +24,7 @@ from string import punctuation
 import re
 warnings.filterwarnings("ignore")
 pd.set_option('display.max_colwidth', -1)
-
+from keras import backend as K
 from keras.models import load_model
 
 def clean_review(review_col):
@@ -42,6 +42,7 @@ def predict_sentences(sentences, model_path):
     test_X = pre_process_test_set(sentences)
     model = load_model(model_path)
     res = model.predict_classes(test_X, verbose=1)
+    K.clear_session()
     return res
 
 def pre_process_test_set(test):

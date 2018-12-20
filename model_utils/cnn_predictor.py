@@ -5,7 +5,7 @@ from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
-
+from keras import backend as K
 from keras.models import load_model
 epochs = 5
 batch_size = 16
@@ -25,4 +25,5 @@ def predict_sentences(sentences, model_path):
     test_X = cnn_preprocessing(sentences)
     model = load_model(model_path)
     res = model.predict_classes(test_X, batch_size=batch_size, verbose=1)
+    K.clear_session()
     return res
