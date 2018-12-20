@@ -12,12 +12,12 @@ batch_size = 16
 max_features = 10000
 maxlen = 125
 
-def cnn_preprocessing(test_X):
+def cnn_preprocessing(sentences):
     tokenizer = Tokenizer(num_words=max_features)
-    tokenizer.fit_on_texts(list(test_X))
-    test_X = tokenizer.texts_to_sequences(test_X)
+    sentences = [sentence.lower() for sentence in sentences]
+    tokenizer.fit_on_texts(list(sentences))
+    test_X = tokenizer.texts_to_sequences(sentences)
     test_X = pad_sequences(test_X, maxlen=maxlen)
-
     return test_X
 
 
