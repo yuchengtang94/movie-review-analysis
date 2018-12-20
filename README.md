@@ -35,7 +35,7 @@ web_app
 
 The *.ipynb files are for our development, the runnable scripts are .py files.
 
-#### Traditional ML 
+#### Traditional ML
 
 Author: Yucheng Tang(yuchengtang@brandeis.edu)
 
@@ -52,7 +52,7 @@ python SVM_training.py
 #### CNN
 Author: Chuangxiong Yi
 
-You can test with 
+You can test with
 ```
 python cnn.py
 ```
@@ -62,7 +62,7 @@ It will run with 1000 sentences.
 #### LSTM
 Author: Yuan Zhou
 
-You can test with 
+You can test with
 ```
 python lstm_bilstm.py
 ```
@@ -82,8 +82,22 @@ In SVM cnn LSTM training script.
 
 Author: Jinli Yu
 
+dependency:
+
+install by pip:
+flask
+flask_wtf
+bootstrap_flask
+selenium
+BeautifulSoup4
+
+install by brew(in Mac) or apt-get(in linux)
+chromedriver
+reference: https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/
+
 Run with:
 
 ```
+cd web_app
 FLASK_APP=app.py flask run
 ```
